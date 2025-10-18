@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { sidebarMenus } from '../../data/constant.jsx';
 
 const Sidebar = () => {
+  const [activeTab, setActiveTab] = useState('Inbox');
   return (
     <div className='w-[15%] border-r-[1px] border-r-gray-600'>
         <div className="p-3">
@@ -14,8 +15,9 @@ const Sidebar = () => {
                 {
                     sidebarMenus.map((menu) => {
                         return (
-                            <div key={menu.id} 
-                            className='flex items-center gap-5 p-2 rounded-md hover:bg-gray-600 cursor-pointer'>
+                            <div onClick={() => setActiveTab(menu.title)} key={menu.id} 
+                            className={`${activeTab === menu.title && 'bg-gray-600'} 
+                            flex items-center gap-5 p-2 rounded-md hover:bg-gray-600 cursor-pointer`}>
                                 <p>{menu.icon}</p>
                                 <p>{menu.title}</p>
                             </div>

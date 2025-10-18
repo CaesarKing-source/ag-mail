@@ -5,3 +5,14 @@
   background-color: #000113;
   color: #fff;
 }
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 12px;
+}
+

@@ -3,6 +3,8 @@ import { FaRegStar } from "react-icons/fa";
 import { RiDraftLine } from "react-icons/ri";
 import { AiOutlineSend } from "react-icons/ai";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { MdLabelImportantOutline } from "react-icons/md";
+import { MdOutlineSocialDistance } from "react-icons/md";
 
 export const sidebarMenus = [
     {
@@ -31,4 +33,17 @@ export const sidebarMenus = [
         icon: <FaRegTrashAlt size={20} />
     },
     
+]
+
+export const mailType = [
+    {
+        id: 1,
+        type: 'Important',
+        icon: <MdLabelImportantOutline size={20} />
+    },
+    {
+        id: 2,
+        type: 'Social',
+        icon: <MdOutlineSocialDistance size={20} />
+    }
 ]

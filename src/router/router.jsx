@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home';
 import Inbox from '../pages/Inbox';
-import Mail from '../pages/Mail';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import MailMessage from '../pages/MailMessage';
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/mail/inbox/:id',
-        element: <Mail />
+        element: <MailMessage />
       }
     ]
   },
