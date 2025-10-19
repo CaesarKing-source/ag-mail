@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { sidebarMenus } from '../../data/constant.jsx';
+import { useDispatch } from 'react-redux';
+import { setMailOpen } from '../../store/slice/appSlice.js';
 
 const Sidebar = () => {
   const [activeTab, setActiveTab] = useState('Inbox');
+  const dispatch = useDispatch();
   return (
     <div className='w-[15%] border-r-[1px] border-r-gray-600'>
         <div className="p-3">
-            <button className='flex items-center gap-2 p-4 rounded-2xl mb-4 bg-gray-800 hover:shadow-gray-600 hover:shadow-md'>
+            <button onClick={() => dispatch(setMailOpen(true))} className='flex items-center gap-2 p-4 rounded-2xl mb-4 bg-gray-800 hover:shadow-gray-600 hover:shadow-md'>
                 <MdOutlineEdit size={25} />
                 Send Mail
             </button>
