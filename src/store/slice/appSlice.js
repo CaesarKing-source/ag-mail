@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     appSidebar: true,
     openMail: false,
+    activeTab: 'Inbox'
 }
 
 export const appSlice = createSlice({
@@ -11,9 +12,12 @@ export const appSlice = createSlice({
         // actions
         setMailOpen: (state, action) => {
             state.openMail = action.payload
+        },
+        setActiveTab: (state, action) => {
+            state.activeTab = action.payload
         }
     }
 });
 
-export const { setMailOpen } = appSlice.actions;
+export const { setMailOpen, setActiveTab } = appSlice.actions;
 export default appSlice.reducer;

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { MdOutlineEdit } from "react-icons/md";
 import { sidebarMenus } from '../../data/constant.jsx';
-import { useDispatch } from 'react-redux';
-import { setMailOpen } from '../../store/slice/appSlice.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveTab, setMailOpen } from '../../store/slice/appSlice.js';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-  const [activeTab, setActiveTab] = useState('Inbox');
+//   const [activeTab, setActiveTab] = useState('Inbox');
+  const { activeTab } = useSelector(state => state.app);
   const dispatch = useDispatch();
   return (
     <div className='w-[15%] border-r-[1px] border-r-gray-600'>
@@ -18,12 +20,12 @@ const Sidebar = () => {
                 {
                     sidebarMenus.map((menu) => {
                         return (
-                            <div onClick={() => setActiveTab(menu.title)} key={menu.id} 
+                            <Link to={`${menu.path}`} onClick={() => dispatch(setActiveTab(menu.title))} key={menu.id} 
                             className={`${activeTab === menu.title && 'bg-gray-600'} 
                             flex items-center gap-5 p-2 rounded-md hover:bg-gray-600 cursor-pointer`}>
                                 <p>{menu.icon}</p>
                                 <p>{menu.title}</p>
-                            </div>
+                            </Link>
                         )
                     })
                 }

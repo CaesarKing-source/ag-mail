@@ -2,7 +2,9 @@ import React from 'react'
 import { MdCropSquare } from "react-icons/md";
 import { FaRegStar } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
-const Mail = () => {
+
+const Mail = ({ mail }) => {
+    console.log(mail)
   const navigate = useNavigate();
   const openMail = () => {
     navigate('/mail/inbox/124981')
@@ -22,10 +24,10 @@ const Mail = () => {
             <p className='font-semibold'>Akshay Giri</p>
         </div>
         <div className="flex-1 ml-4 truncate inline-block text-gray-300">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, pariatur?</p>
+            <p>{mail?.message}</p>
         </div>
         <div className="flex-none">
-            <p className='font-medium'>20/03/2035 <span>8:00 PM</span></p>
+            <p className='font-regular text-sm'>{new Date(mail?.createdAt?.seconds*1000).toUTCString()}</p>
         </div>
     </div>
   )

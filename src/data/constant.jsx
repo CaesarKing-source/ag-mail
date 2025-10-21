@@ -10,27 +10,32 @@ export const sidebarMenus = [
     {
         id: 1,
         title: 'Inbox',
-        icon: <MdInbox size={20} />
+        icon: <MdInbox size={20} />,
+        path: '/'
     },
     {
         id: 2,
         title: 'Starred',
-        icon: <FaRegStar size={20} />
+        icon: <FaRegStar size={20} />,
+        path: '/starred'
     },
     {
         id: 3,
         title: 'Draft',
-        icon: <RiDraftLine size={20} />
+        icon: <RiDraftLine size={20} />,
+        path: '/draft'
     },
     {
         id: 4,
-        title: 'Send',
-        icon: <AiOutlineSend size={20} />
+        title: 'Sent',
+        icon: <AiOutlineSend size={20} />,
+        path: '/sent'
     },
     {
         id: 5,
         title: 'Trash',
-        icon: <FaRegTrashAlt size={20} />
+        icon: <FaRegTrashAlt size={20} />,
+        path: '/trash'
     },
     
 ]

@@ -3,6 +3,9 @@ import { IoClose } from "react-icons/io5";
 import { AiOutlineExpandAlt } from "react-icons/ai";
 import { useDispatch } from 'react-redux';
 import { setMailOpen } from '../store/slice/appSlice';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase.config';
+import toast from 'react-hot-toast';
 
 const SendMail = () => {
   const dispatch = useDispatch();
@@ -20,10 +23,42 @@ const SendMail = () => {
     setFormData({...formData, [e.target.name]: e.target.value});
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData);
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      if (!to || !message) {
+        toast.error("Recipient and message are required!");
+        return;
+      }
+      const response = await addDoc(collection(db, 'inbox-emails'), {
+        to,
+        cc,
+        bcc,
+        subject,
+        message,
+        from: 'agiri6562@gmail.com',
+        createdAt: serverTimestamp(),
+        isRead: false,
+        isStarred: false,
+        isActive: true
+      })
+      console.log(response);
+      dispatch(setMailOpen(false));
+      toast.success('Mail send successfully !!')
+      setFormData({
+        to: '',
+        cc: '',
+        bcc: '',
+        subject: '',
+        message: '' 
+      });
+    }
+    catch (err) {
+      toast.error(err.message);
+      console.log(err);
+    }
   }
+
   return (
     <div className="absolute to-0 left-0 right-0 w-full min-h-screen 
     overflow-hidden bg-gray-800/60 z-[999] flex justify-center items-center">
