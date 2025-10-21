@@ -6,6 +6,7 @@ import { IoMdMore } from "react-icons/io";
 import { GoRead } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import MailContainer from '../components/shared/MailContainer';
 
 const Starred = () => {
   return (
@@ -40,6 +41,10 @@ const Starred = () => {
           <IoMdArrowDropdown size={20} />
           <h2 className='text-lg font-medium'>Starred Mails</h2>
         </div>
+      </div>
+
+      <div className="h-[68vh] overflow-auto mb-2">
+          <MailContainer type={'Starred'}/>
       </div>
     </div>
   )

@@ -6,10 +6,25 @@ import { IoMdMore } from "react-icons/io";
 import { GoRead } from "react-icons/go";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
+import MailContainer from '../components/shared/MailContainer';
+import toast from 'react-hot-toast';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../config/firebase.config';
 
 const Trash = () => {
+  const handleDeleteMail = async () => {
+    try {
+      await deleteDoc(doc(db, 'inbox-emails', id));
+      toast.success('Email deleted successfully');
+    }
+    catch(err) {
+      toast.error('Something went wrong!');
+      console.log(err);
+    }
+  }
+  
   return (
-<div className='flex-1 bg-gray-800 rounded-md mx-3 p-3 relative'>
+    <div className='flex-1 bg-gray-800 rounded-md mx-3 p-3 relative'>
       <div className="flex justify-between items-center">
         <div className="flex items-center py-2">
           <div className="p-2 rounded-full hover:bg-gray-600 cursor-pointer">
@@ -40,6 +55,10 @@ const Trash = () => {
           <IoMdArrowDropdown size={20} />
           <h2 className='text-lg font-medium'>Trash Mails</h2>
         </div>
+      </div>
+
+      <div className="h-[68vh] overflow-auto mb-2">
+          <MailContainer type={'Trash'}/>
       </div>
     </div>
   )

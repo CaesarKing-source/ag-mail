@@ -6,7 +6,8 @@ import { db } from '../../config/firebase.config';
 
 const MailContainer = ({ type }) => {
   const [mails, setMails] = useState([]);
-  const userEmail = 'agiri6562@gmail.com'
+  const userEmail = 'agiri6562@gmail.com';
+  
   useEffect(() => {
     let q;
     switch(type) {
