@@ -4,7 +4,8 @@ const initialState = {
     openMail: false,
     activeTab: 'Inbox',
     selectedMail: null,
-    isLoading: false
+    isLoading: false,
+    searchMail: null
 }
 
 export const appSlice = createSlice({
@@ -26,9 +27,13 @@ export const appSlice = createSlice({
         },
         setIsLoading: (state, action) => {
             state.isLoading = action.payload
+        },
+        setSearchMail: (state, action) => {
+            state.searchMail = action.payload
         }
     }
 });
 
-export const { setMailOpen, setActiveTab, setSelectedMail, setIsLoading } = appSlice.actions;
+export const { setMailOpen, setActiveTab, setSelectedMail, setIsLoading, setSearchMail } = 
+appSlice.actions;
 export default appSlice.reducer;

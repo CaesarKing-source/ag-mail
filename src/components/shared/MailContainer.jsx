@@ -2,11 +2,24 @@ import React, { useEffect, useState } from 'react';
 import Mail from './Mail';
 import { query, collection, onSnapshot, orderBy, where } from 'firebase/firestore';
 import { db } from '../../config/firebase.config';
+import { useSelector } from 'react-redux';
 
 
 const MailContainer = ({ type }) => {
   const [mails, setMails] = useState([]);
+  const { searchMail } = useSelector(state => state.app);
+  const [tempMails, setTempMails] = useState(mails);
   const userEmail = 'agiri6562@gmail.com';
+
+  useEffect(() => {
+    const filterMails = mails?.filter(mail => {
+      return mail?.subject?.toLowerCase().includes(searchMail.toLowerCase())
+      || mail?.message?.toLowerCase().includes(searchMail.toLowerCase())
+      || mail?.to?.toLowerCase().includes(searchMail.toLowerCase()) 
+      || mail?.from?.toLowerCase().includes(searchMail.toLowerCase());
+    });
+    setTempMails(filterMails);
+  }, [searchMail, mails]);
   
   useEffect(() => {
     let q;
@@ -46,7 +59,6 @@ const MailContainer = ({ type }) => {
     
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const allEmails = snapshot.docs?.map((doc) => ({...doc.data(), id: doc.id}));
-      console.log(allEmails)
       setMails(allEmails);
     });
     
@@ -57,7 +69,7 @@ const MailContainer = ({ type }) => {
     <div>
       {
         mails?.length > 0 ? (
-          mails.map((mail) => <Mail key={mail.id} mail={mail} />)
+          tempMails.map((mail) => <Mail key={mail.id} mail={mail} />)
         ) : (
           <p className="text-center text-gray-400 mt-4">No {type} mails found.</p>
         )

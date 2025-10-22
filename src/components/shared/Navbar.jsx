@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMailUnreadOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BsQuestionCircle } from "react-icons/bs";
+import { useDispatch } from 'react-redux';
+import { setSearchMail } from '../../store/slice/appSlice';
 
 const Navbar = () => {
+  const [searchInput, setSearchInput] = useState('');
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSearchMail(searchInput));
+  }, [searchInput]);
   return (
     <div className='flex justify-between items-center mx-4 h-16 border-b-[1px] border-b-gray-600'>
       <div className="flex items-center gap-5">
@@ -20,7 +28,8 @@ const Navbar = () => {
       <div className="md:block hidden w-[50%] mr-50">
         <div className="flex items-center bg-gray-800 px-5 py-2 rounded-md">
             <IoIosSearch size={20} className='mr-2' />
-            <input className='w-full bg-transparent border-0 outline-0' placeholder='search mail...' />
+            <input className='w-full bg-transparent border-0 outline-0' placeholder='search mail...'
+            value={searchInput} onChange={(e) => setSearchInput(e.target.value)} />
         </div>
       </div>
       <div className="md:block hidden">
