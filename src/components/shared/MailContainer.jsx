@@ -4,7 +4,6 @@ import { query, collection, onSnapshot, orderBy, where } from 'firebase/firestor
 import { db } from '../../config/firebase.config';
 import { useSelector } from 'react-redux';
 
-
 const MailContainer = ({ type }) => {
   const [mails, setMails] = useState([]);
   const { searchMail } = useSelector(state => state.app);

@@ -6,7 +6,6 @@ import { setActiveTab, setMailOpen } from '../../store/slice/appSlice.js';
 import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
-//   const [activeTab, setActiveTab] = useState('Inbox');
   const { activeTab } = useSelector(state => state.app);
   const dispatch = useDispatch();
   return (
