@@ -9,19 +9,13 @@ import Login from './pages/Login'
 
 const App = () => {
   const { openMail } = useSelector(state => state.app);
-  const user = false;
+  const { isAuth } = useSelector(state => state.user);
   return (
     <div className='min-h-screen w-full'>
       <Toaster position="top-right" reverseOrder={false}/>
-      {
-        !user ? ( <Login /> ) : (
-          <>
-          { openMail && <SendMail /> }
-          <Navbar />
-          <RouterProvider router={router} />
-          </>
-        )
-      }
+      { openMail && <SendMail /> }
+      {/* { isAuth && <Navbar />} */}
+      <RouterProvider router={router} />
     </div>
   )
 }

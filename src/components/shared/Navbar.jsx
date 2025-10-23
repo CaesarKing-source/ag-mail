@@ -4,11 +4,13 @@ import { IoMailUnreadOutline } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { BsQuestionCircle } from "react-icons/bs";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchMail } from '../../store/slice/appSlice';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [searchInput, setSearchInput] = useState('');
+  const { user } = useSelector(state => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,10 +42,10 @@ const Navbar = () => {
             <div className="rounded-full p-3 hover:bg-gray-800 cursor-pointer">
                 <IoSettingsOutline size={20} />
             </div>
-            <div className="rounded-full border-2 border-gray-100 p-1 cursor-pointer">
+            <Link to='/profile' className="rounded-full border-2 border-gray-100 p-1 cursor-pointer">
               <img className='h-[30px] w-[30px] rounded-full object-cover object-center' 
-              src='https://images.unsplash.com/photo-1526510747491-58f928ec870f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=687' />
-            </div>
+              src={user?.photoURL} />
+            </Link>
         </div>
       </div>
     </div>

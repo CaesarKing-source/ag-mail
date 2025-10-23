@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from 'react-router-dom'
 import Home from '../pages/Home';
 import Inbox from '../pages/Inbox';
 import Starred from '../pages/Starred';
@@ -9,11 +9,21 @@ import Login from '../pages/Login';
 import Register from '../pages/Register';
 import MailMessage from '../pages/MailMessage';
 import Profile from '../pages/Profile';
+import { useSelector } from 'react-redux';
+
+const ProtectedRoute = ({ children }) => {
+  const { isAuth } = useSelector(state => state.user);
+  return isAuth ? children : <Navigate to="/login" />;
+};
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: (
+      <ProtectedRoute>
+        <Home />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: '/',
@@ -38,7 +48,7 @@ export const router = createBrowserRouter([
       {
         path: '/mail/inbox/:id',
         element: <MailMessage />
-      }
+      },
     ]
   },
   {
@@ -51,6 +61,10 @@ export const router = createBrowserRouter([
   },
   {
     path: '/profile',
-    element: <Profile />
-  }
+    element: (
+      <ProtectedRoute>
+        <Profile />
+      </ProtectedRoute>
+    ),
+  },
 ]);

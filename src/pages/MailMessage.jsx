@@ -85,9 +85,9 @@ const MailMessage = () => {
       </div>
       <div className="flex justify-between items-center mb-2">
         <div className='text-sm text-gray-300'>
-          <p className='font-medium'>From: Test User .
+          <p className='font-medium'>From:
           <span className='font-normal ml-2'>{selectedMail?.from}</span></p>
-          <p className='font-medium'>to: Akshay Giri . 
+          <p className='font-medium'>to: 
           <span className='font-normal ml-2'>{selectedMail?.to}</span></p>
         </div>
         <p className='text-xs gray-300'>{selectedMail?.createdAt}</p>

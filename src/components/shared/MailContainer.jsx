@@ -6,9 +6,10 @@ import { useSelector } from 'react-redux';
 
 const MailContainer = ({ type }) => {
   const [mails, setMails] = useState([]);
-  const { searchMail } = useSelector(state => state.app);
   const [tempMails, setTempMails] = useState(mails);
-  const userEmail = 'agiri6562@gmail.com';
+  const { searchMail } = useSelector(state => state.app);
+  const { user } = useSelector(state => state.user);
+  const userEmail = user?.email;
 
   useEffect(() => {
     const filterMails = mails?.filter(mail => {
