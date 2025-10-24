@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IoClose } from "react-icons/io5";
 import { AiOutlineExpandAlt } from "react-icons/ai";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMailOpen } from '../store/slice/appSlice';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../config/firebase.config';
@@ -9,6 +9,7 @@ import toast from 'react-hot-toast';
 
 const SendMail = () => {
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.user);
   const [isbcc, setIsBcc] = useState(false);
   const [formData, setFormData] = useState({
     to: '',
@@ -37,6 +38,7 @@ const SendMail = () => {
         subject,
         message,
         from: 'agiri6562@gmail.com',
+        displayName: user?.displayName,
         createdAt: serverTimestamp(),
         isRead: false,
         isStarred: false,

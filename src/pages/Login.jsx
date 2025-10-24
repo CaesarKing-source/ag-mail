@@ -74,7 +74,7 @@ const Login = () => {
           <h2 className='text-2xl font-semibold'>Welcome User</h2>
           <form className='flex flex-col gap-5 w-full mt-10'>
             <input className='border-[1px] border-gray-200 p-2 w-full rounded' type="email" placeholder='example@mail.com' name='email' value={email} onChange={handleInput} />
-            <input className='border-[1px] border-gray-200 p-2 w-full rounded' type="password" name="password" placeholder='******' value={password} onChange={handleInput} />
+            <input className='border-[1px] border-gray-200 p-2 w-full rounded' type="password" name="password" placeholder='******' value={password} onChange={handleInput} autoComplete='true' />
             <button onClick={handleLogin} className='mt-2 bg-gray-500 p-2 rounded-md cursor-pointer hover:bg-gray-600'>
               Login</button>
           </form>

@@ -44,7 +44,7 @@ const Mail = ({ mail }) => {
             </div>
         </div>
         <div className="ml-4 truncate inline-block">
-            <p className='font-semibold'>Akshay Giri</p>
+            <p className='font-semibold'>{mail?.displayName}</p>
         </div>
         <div className="flex-1 ml-4 max-w-[55dvw]">
             <p className="truncate text-gray-300">

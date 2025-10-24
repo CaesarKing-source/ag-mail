@@ -63,7 +63,7 @@ const MailContainer = ({ type }) => {
     });
     
     return () => unsubscribe();
-  }, [type]);
+  }, [type, userEmail]);
   
   return (
     <div>
